@@ -16,13 +16,13 @@ function Chessboard() {
       if (tile % 2 === 0) {
         board.push(
           <div className="tile dark-tile">
-            {horizontalAxis[i]} {verticalAxis[j]}
+            <button className="dark-tile">{horizontalAxis[i]} {verticalAxis[j]}</button>
           </div>
         );
       } else {
         board.push(
           <div className="tile light-tile">
-            {horizontalAxis[i]} {verticalAxis[j]}
+            <button className="light-tile">{horizontalAxis[i]} {verticalAxis[j]}</button> 
           </div>
         );
       }
