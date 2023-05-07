@@ -1,4 +1,5 @@
 .app {
 display: flex;
 place-content: center;
+margin: 100px;
 }
