@@ -1,5 +1,7 @@
 .app {
-display: flex;
-place-content: center;
-margin: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
+  margin: 80px;
 }
