@@ -10,6 +10,9 @@ function App() {
         <Route path="/" element={<Chessboard />} />
         <Route path="/:start" element={<Chessboard />} />
       </Routes>
+      <button className="refresh" onClick={() => window.location.reload(true)}>
+        Refresh the board
+      </button>
     </div>
   );
 }

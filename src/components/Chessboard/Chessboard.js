@@ -8,23 +8,28 @@ function Chessboard() {
   const [potentialMoves, setPotentialMoves] = useState([]);
   const { start } = useParams();
   const location = useLocation();
+  const queryParameter = new URLSearchParams(location.search);
+  const startValue = queryParameter.get("start");
+  const startSquare = start?.split("").toString();
+  const [selectedSquare, setSelectedSquare] = useState(startValue);
 
   function createSquare(row, col) {
     const cell = {
       row: row,
       col: col,
     };
-    const queryParameter = new URLSearchParams(location.search);
-    const startValue = queryParameter.get("start");
-    const startSquare = start?.split("").toString();
+
     const clickedSquare = isPotentialMove(cell, potentialMoves) ? "move" : "";
-    
+    const isStart =
+      Boolean(startSquare === `${row},${col}`) || startValue === `${row}${col}`;
+    const startColor = isStart ? "start" : "";
+
     return (
       <Square
         row={row}
         col={col}
-        startSquare={startSquare}
         handleClick={handleClick}
+        startColor={startColor}
         clickedSquare={clickedSquare}
         startValue={startValue}
       />
@@ -60,13 +65,14 @@ function Chessboard() {
         oneMovement.col <= 8
       );
     });
-
     setPotentialMoves(possibleMovements);
     return possibleMovements;
   }
+
   function handleClick(row, col) {
-    // console.log(`Clicked square (${col}, ${row})`);
+    const clickedValue = { row: row, col: col };
     const movesArray = getKnightMoves(row, col);
+    setSelectedSquare(clickedValue);
   }
 
   return (
