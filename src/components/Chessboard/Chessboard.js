@@ -16,11 +16,9 @@ function Chessboard() {
     };
     const queryParameter = new URLSearchParams(location.search);
     const startValue = queryParameter.get("start");
-
     const startSquare = start?.split("").toString();
-
     const clickedSquare = isPotentialMove(cell, potentialMoves) ? "move" : "";
-
+    
     return (
       <Square
         row={row}
