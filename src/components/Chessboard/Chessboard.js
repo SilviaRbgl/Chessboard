@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import "../Chessboard/Chessboard.css";
 import { isPotentialMove } from "../../utils/isPotencialMove";
 import Square from "../Square/Square";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 function Chessboard() {
-  const [potentialMoves, setPotentialMoves] = useState([]);
+  //get url Parameter
   const { start } = useParams();
+  const navigate = useNavigate();
+
   const location = useLocation();
   const queryParameter = new URLSearchParams(location.search);
   const startValue = queryParameter.get("start");
+
+  //transform url param into an string of numbers separated by colon , like "1,1"
   const startSquare = start?.split("").toString();
-  const [selectedSquare, setSelectedSquare] = useState(startValue);
+
+  const [potentialMoves, setPotentialMoves] = useState([]);
+  const [selectedSquare, setSelectedSquare] = useState([]);
 
   function createSquare(row, col) {
     const cell = {
@@ -21,7 +27,8 @@ function Chessboard() {
 
     const clickedSquare = isPotentialMove(cell, potentialMoves) ? "move" : "";
     const isStart =
-      Boolean(startSquare === `${row},${col}`) || startValue === `${row}${col}`;
+      Boolean(startSquare === `${row},${col}`) || (startValue === `${row}${col}`) ;
+
     const startColor = isStart ? "start" : "";
 
     return (

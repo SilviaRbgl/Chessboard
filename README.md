@@ -20,7 +20,7 @@ You will need node and npm installed globally on your machine.
 
 ## How to use
 
-- Home URL: [http://localhost:3000](http://localhost:3000). Here can click in any square of the chessboard to see the possible paths for the knight.
+- Home URL: [chessboard-silviarbgl.vercel.app/](chessboard-silviarbgl.vercel.app/). Here can click in any square of the chessboard to see the possible paths for the knight.
 
 - Getting paths with a query parameter, so it will show you directly a possible movement: With the query `start`, you have to enter a numeric value of two zifern between 1 to 8 after the query `?start=`, so it will open a clicked square to view the possible paths for the knight. For example for `?start=55`, it will show you the paths of the row 5 and column 5: [http://localhost:3000/?start=55](http://localhost:3000/?start=55)
 
