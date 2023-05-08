@@ -1,12 +1,6 @@
 import "../Square/Square.css";
 
-function Square({
-  row,
-  col,
-  handleClick,
-  clickedSquare,
-  startColor,
-}) {
+function Square({ row, col, handleClick, clickedSquare, startColor }) {
   const isBlue = (row + col) % 2 === 1;
   const squareColor = isBlue ? "blue-dark" : "blue-light";
 
