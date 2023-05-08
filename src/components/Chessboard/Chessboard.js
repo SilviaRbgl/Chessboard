@@ -2,28 +2,24 @@ import React, { useState } from "react";
 import "../Chessboard/Chessboard.css";
 import { isPotentialMove } from "../../utils/isPotencialMove";
 import Square from "../Square/Square";
-import { useParams } from "react-router-dom";
-
+import { useParams, useLocation } from "react-router-dom";
 
 function Chessboard() {
   const [potentialMoves, setPotentialMoves] = useState([]);
   const { start } = useParams();
-
-
-  // console.log(typeof startMoveToArray); ARRAY
-  // const startMoveToString = startMoveArray.toString();
-  // console.log("startMoveToString>>", startMoveToString);
-  // console.log(typeof startMoveToString); STRING
+  const location = useLocation();
 
   function createSquare(row, col) {
-    const square = {
+    const cell = {
       row: row,
       col: col,
     };
-    const startSquare = start?.split("").toString();
-    console.log("startSquare", startSquare);
+    const queryParameter = new URLSearchParams(location.search);
+    const startValue = queryParameter.get("start");
 
-    const clickedSquare = isPotentialMove(square, potentialMoves) ? "move" : "";
+    const startSquare = start?.split("").toString();
+
+    const clickedSquare = isPotentialMove(cell, potentialMoves) ? "move" : "";
 
     return (
       <Square
@@ -32,6 +28,7 @@ function Chessboard() {
         startSquare={startSquare}
         handleClick={handleClick}
         clickedSquare={clickedSquare}
+        startValue={startValue}
       />
     );
   }
@@ -44,11 +41,8 @@ function Chessboard() {
     }
     boardRows.push(<div className="row">{boardColumns}</div>);
   }
-  // console.log(boardRows);
-  function getKnightMoves(row, col) {
-    console.log("getKnightMoves");
 
-    // const moves = [];
+  function getKnightMoves(row, col) {
     const allKnightMovements = [
       { row: row - 2, col: col + 1 },
       { row: row - 1, col: col + 2 },
@@ -59,7 +53,6 @@ function Chessboard() {
       { row: row - 1, col: col - 2 },
       { row: row - 2, col: col - 1 },
     ];
-    // console.log("allKnightMovements", allKnightMovements);
 
     const possibleMovements = allKnightMovements.filter((oneMovement) => {
       return (
@@ -69,15 +62,13 @@ function Chessboard() {
         oneMovement.col <= 8
       );
     });
-    // console.log("possibleMovements", possibleMovements);
+
     setPotentialMoves(possibleMovements);
     return possibleMovements;
   }
   function handleClick(row, col) {
-    console.log(`Clicked square (${col}, ${row})`);
-    //   console.log(getKnightMoves(row, col));
+    // console.log(`Clicked square (${col}, ${row})`);
     const movesArray = getKnightMoves(row, col);
-    console.log("movesArray", movesArray);
   }
 
   return (
