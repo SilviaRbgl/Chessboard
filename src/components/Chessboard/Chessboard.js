@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Chessboard/Chessboard.css";
 import { isPotentialMove } from "../../utils/isPotencialMove";
 import Square from "../Square/Square";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { convertCoords } from "../../utils/convertCoords";
 
 function Chessboard() {
-  //get url Parameter
-  const { start } = useParams();
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const queryParameter = new URLSearchParams(location.search);
+  // Get query params
+  const { search } = useLocation();
+  const queryParameter = new URLSearchParams(search);
   const startValue = queryParameter.get("start");
-
-  //transform url param into an string of numbers separated by colon , like "1,1"
-  const startSquare = start?.split("").toString();
 
   const [potentialMoves, setPotentialMoves] = useState([]);
   const [selectedSquare, setSelectedSquare] = useState([]);
+
+  useEffect(() => {
+    if (startValue) {
+      const startingValues = startValue.split("");
+      const [startingRow, startColumn] = convertCoords(startingValues);
+      const movesArray = getKnightMoves(startingRow, startColumn);
+
+      setPotentialMoves(movesArray);
+      setSelectedSquare([startingRow, startColumn]);
+    }
+  }, []);
 
   function createSquare(row, col) {
     const cell = {
@@ -25,20 +33,27 @@ function Chessboard() {
       col: col,
     };
 
-    const clickedSquare = isPotentialMove(cell, potentialMoves) ? "move" : "";
-    const isStart =
-      Boolean(startSquare === `${row},${col}`) || (startValue === `${row}${col}`) ;
+    const clickedSquare = isPotentialMove(cell, potentialMoves)
+      ? "move"
+      : "no-highlight";
 
-    const startColor = isStart ? "start" : "";
+    const isStart = Boolean(
+      selectedSquare[0] === row && selectedSquare[1] === col
+    );
+    const startColorClass = isStart ? "start" : "";
+
+    // Assign a letter per row to be printed out inside the Square component
+    const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const letterRow = letters[row - 1];
 
     return (
       <Square
         row={row}
+        letterRow={letterRow}
         col={col}
         handleClick={handleClick}
-        startColor={startColor}
+        startColorClass={startColorClass}
         clickedSquare={clickedSquare}
-        startValue={startValue}
       />
     );
   }
@@ -52,7 +67,9 @@ function Chessboard() {
     boardRows.push(<div className="row">{boardColumns}</div>);
   }
 
+  // Get a list of the potential squares the knight could move to
   function getKnightMoves(row, col) {
+    // Get all the possible movements, even outside the limits of the chessboard
     const allKnightMovements = [
       { row: row - 2, col: col + 1 },
       { row: row - 1, col: col + 2 },
@@ -64,6 +81,7 @@ function Chessboard() {
       { row: row - 2, col: col - 1 },
     ];
 
+    // Get a list of possible movements inside the chessboard limits
     const possibleMovements = allKnightMovements.filter((oneMovement) => {
       return (
         oneMovement.row >= 1 &&

@@ -20,9 +20,8 @@ You will need node and npm installed globally on your machine.
 
 ## How to use
 
-- Home URL: [https://chessboard-silviarbgl.vercel.app](https://chessboard-silviarbgl.vercel.app). Here can click in any square of the chessboard to see the possible paths for the knight.
+- URL: [https://chessboard-silviarbgl.vercel.app](https://chessboard-silviarbgl.vercel.app). Here can click in any square of the chessboard to see the possible paths for the knight.
 
-- Getting paths with a query parameter, so it will show you directly a possible movement: With the query `start`, you have to enter a numeric value of two zifern between 1 to 8 after the query `?start=`, so it will open a clicked square to view the possible paths for the knight. For example for `?start=55`, it will show you the paths of the row 5 and column 5: [https://chessboard-silviarbgl.vercel.app/?start=55](https://chessboard-silviarbgl.vercel.app/?start=55)
+- Getting paths with a query parameter, so it will show you directly a possible movement: With the query `start`, you have to enter first a letter from A to H, then a number between 1 and 8 after the query `?start=`, so it will open a clicked square to view the possible paths for the knight. For example for `?start=A5`, it will show you the paths of the column A and row 5: [https://chessboard-silviarbgl.vercel.app/?start=55](https://chessboard-silviarbgl.vercel.app/?start=55)
 
-- Getting paths with a dynamic URL, so it will show you directly a possible movement. With the dynamic URL, you have to enter a numeric value of two zifern between 1 to 8 after the `/`, so it will open a clicked square to view the possible paths for the knight. For example for `/55`, it will show you the paths of the row 5 and column 5: [http://localhost:3000/55](http://localhost:3000/55)
 
