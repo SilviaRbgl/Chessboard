@@ -22,6 +22,6 @@ You will need node and npm installed globally on your machine.
 
 - URL [https://chessboard-silviarbgl.vercel.app](https://chessboard-silviarbgl.vercel.app): Here can click in any square of the chessboard to see the possible movements for the knight.
 
-- Getting paths with a query parameter, so it shows directly a possible movement of the knight: After the query `?start=`, enter first a letter from A to H, then a number between 1 and 8, so it will display a clicked square with the possible movements for the knight. For example for `?start=A5`, it will show you the paths of the column e and row 4: [https://chessboard-silviarbgl.vercel.app/?start=e4](https://chessboard-silviarbgl.vercel.app/?start=e4)
+- Getting paths with a query parameter, so it shows directly a possible movement of the knight: After the query `?start=`, enter first a letter from A to H, then a number between 1 and 8, so it will display a clicked square with the possible movements for the knight. For example for `?start=e4`, it will show you the paths of the column e and row 4: [https://chessboard-silviarbgl.vercel.app/?start=e4](https://chessboard-silviarbgl.vercel.app/?start=e4)
 
 
