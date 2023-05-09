@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../Chessboard/Chessboard.css";
-import { isPotentialMove } from "../../utils/isPotencialMove";
-import Square from "../Square/Square";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../Chessboard/Chessboard.css";
+import Square from "../Square/Square";
+import { isPotentialMove } from "../../utils/isPotencialMove";
 import { convertCoords } from "../../utils/convertCoords";
 
 function Chessboard() {

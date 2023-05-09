@@ -1,7 +1,7 @@
 # Darstellung der möglichen Züge eines Springers
 
-For the "DB Sprintstarter:in Junior-Entwickler:in", I built a chessboard web app using React.
-The app can show the possible moves of the knight.
+For the "DB Sprintstarter:in Junior-Entwickler:in", I have built a chessboard web app using React.
+The app can show the possible moves of the knight on a chessboard.
 
 ## Setup
 
@@ -20,8 +20,8 @@ You will need node and npm installed globally on your machine.
 
 ## How to use
 
-- URL: [https://chessboard-silviarbgl.vercel.app](https://chessboard-silviarbgl.vercel.app). Here can click in any square of the chessboard to see the possible paths for the knight.
+- URL [https://chessboard-silviarbgl.vercel.app](https://chessboard-silviarbgl.vercel.app): Here can click in any square of the chessboard to see the possible movements for the knight.
 
-- Getting paths with a query parameter, so it will show you directly a possible movement: With the query `start`, you have to enter first a letter from A to H, then a number between 1 and 8 after the query `?start=`, so it will open a clicked square to view the possible paths for the knight. For example for `?start=A5`, it will show you the paths of the column A and row 5: [https://chessboard-silviarbgl.vercel.app/?start=55](https://chessboard-silviarbgl.vercel.app/?start=55)
+- Getting paths with a query parameter, so it shows directly a possible movement of the knight: After the query `?start=`, enter first a letter from A to H, then a number between 1 and 8, so it will display a clicked square with the possible movements for the knight. For example for `?start=A5`, it will show you the paths of the column A and row 5: [https://chessboard-silviarbgl.vercel.app/?start=55](https://chessboard-silviarbgl.vercel.app/?start=55)
 
 
